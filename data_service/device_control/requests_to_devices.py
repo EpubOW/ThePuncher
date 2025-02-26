@@ -13,11 +13,11 @@ def request_to_serial_sensor(request: str, client: serial.Serial, response_len, 
         print(e)
         return e
     command = crc16_module.add_crc(request, mode=mode)
-    print('command', command)
+    # print('command', command)
     client.write(command)
     # response = client.readall()
     response = client.read(response_len)
-    print(f'response {response}')
+    # print(f'response {response}')
     if response:
         assert crc16_module.check_crc(response, mode=mode)
     else:

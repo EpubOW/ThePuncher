@@ -29,7 +29,7 @@ def check_crc(answer: bytes, mode=None):
 def add_crc(request: bytes, mode=None):
     crc = modbus_crc(request)
     if mode == 'MODBUS': crc = swap_crc(crc)
-    print(f'crc: {nice_hex(crc.to_bytes(2))}')
+    # print(f'crc: {nice_hex(crc.to_bytes(2))}')
     try:
         final_req = request + crc.to_bytes(2)
     except Exception as e:
