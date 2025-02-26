@@ -1,0 +1,13 @@
+# api config
+API_HOST  = '0.0.0.0'
+API_PORT  = 8001
+API_DEBUG = True
+
+# device config
+SERIAL_NAME     = '/dev/ttyUSB0'
+SERIAL_BAUDRATE = 115200
+SERIAL_PARITY   = 'N'
+SERIAL_STOPBITS = 1
+SERIAL_BYTESIZE = 8
+SERIAL_TIMEOUT  = 1
+
