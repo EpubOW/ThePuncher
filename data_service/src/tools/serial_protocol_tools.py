@@ -2,6 +2,7 @@ import binascii
 
 from .byte_reader_tool import *
 from .crc16module import *
+from .byte_print_tool import *
 
 from loguru import logger
 
@@ -20,11 +21,11 @@ def send_message(
 ):
     message = address + command + msg
     message_crc = add_crc(message)
-    logger.info(f'send: {message_crc}')
+    logger.info(f'send: {print_bytes_at_nice_view(message_crc)}')
     res = ser.write(message_crc)
     ser.flush()
     size, answer = byte_reader(ser, responce_size)
-    logger.info(f'read: {answer}')
+    logger.info(f'read: {print_bytes_at_nice_view(answer)}')
     return size, answer
     
 def check_answer(

@@ -9,7 +9,7 @@ class PuncherApp:
         on_startup_init:Callable,
         host:str,
         port:str,
-        api_debug_mode:bool        = False
+        api_debug_mode:bool = False
         
     ):
         self.__flask_app = flask_app
@@ -17,7 +17,7 @@ class PuncherApp:
         self.__on_startup_init = on_startup_init
         self.__host            = host
         self.__port            = port
-        self.api_debug_mode    = api_debug_mode
+        self.__api_debug_mode  = api_debug_mode
         
     def start_app(self):
         self.__on_startup_init()
@@ -25,7 +25,7 @@ class PuncherApp:
             self.__flask_app.run(
                 host  = self.__host,
                 port  = self.__port,
-                debug = self.api_debug_mode
+                debug = self.__api_debug_mode
             )
         
         

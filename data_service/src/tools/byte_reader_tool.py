@@ -1,12 +1,17 @@
 import serial
-from time import time
 
 class SerialSizeException(Exception):
     pass
 
 def byte_reader(
     ser: serial.Serial, 
-    size = 9
+    size: int
+):
+    buf = ser.read(size)
+    return len(buf), buf
+
+def byte_reader_without_size(
+        ser: serial.Serial
 ):
     buf = b''
     while True:

@@ -34,7 +34,7 @@ serial_manager = SerialManagerService(
 )
 
 # devices
-puncher = PuncherClient(
+puncher_client = PuncherClient(
     dev_address=b'\x01',
     serial_manager=serial_manager
 )

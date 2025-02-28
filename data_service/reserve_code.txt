@@ -1,0 +1,26 @@
+@classmethod
+    def searchDistance(cls):
+        # minVolt = 2.5
+        indexPos = 0
+        indexVolt = 1
+        indexTemp = 2
+        lastVolts = []
+        voltsLen = 10
+        keyVoltDifference = 1
+        VoltDifference = None
+        data = None
+        distance = None
+        count = 0
+        timePause = 0.006
+
+        while True:
+            data = cls.getData()
+            if len(lastVolts) < voltsLen and count > 1: lastVolts.pop(0)
+            lastVolts.append(data[indexVolt])
+            if (lastVolts[-1] - lastVolts[0]) >= keyVoltDifference: 
+                distance = data[indexPos] / 19.98
+                print(f'distance: {distance}, volts: [{lastVolts[-1]}, {lastVolts[0]}]')
+            count += 1
+            if count % 10 == 0: print(f'volt: [{lastVolts[-1]}, {lastVolts[0]}]')
+            
+            time.sleep(timePause) # пауза чтобы не забивать канал
