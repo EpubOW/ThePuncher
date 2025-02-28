@@ -10,6 +10,6 @@ RUN pip install --no-cache-dir --upgrade pip && \
 
 COPY . . 
 
-CMD ["python3", "app.py"]
+CMD ["python3", "main.py"]
 
 

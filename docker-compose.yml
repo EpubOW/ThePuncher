@@ -1,0 +1,34 @@
+version: "3.8"
+
+name: puncher
+services: 
+  postgres:
+    image: postgres:16
+    restart: always
+    environment:
+      POSTGRES_USER:     rec_sys_user
+      POSTGRES_PASSWORD: paword
+      POSTGRES_DB:       purewave
+    ports:
+      - "5434:5432"
+    volumes:
+      - pgvector_data:/var/lib/postgresql/data
+
+  data_service:
+    image: puncher_data_service
+    restart: always
+    environment:
+      API_HOST:        0.0.0.0
+      API_PORT:        8001
+      API_DEBUG:       True
+      SERIAL_NAME:     COM18
+      SERIAL_BAUDRATE: 115200
+      SERIAL_PARITY:   N
+      SERIAL_STOPBITS: 1
+      SERIAL_BYTESIZE: 8
+      SERIAL_TIMEOUT:  1
+    ports:
+      - "8001:8001"
+
+volumes:
+  pgvector_data:
